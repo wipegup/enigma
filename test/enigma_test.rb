@@ -1,3 +1,4 @@
+require './test/test_helper'
 require './lib/enigma'
 class EnigmaTest < MiniTest::Test
   def setup
