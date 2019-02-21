@@ -1,6 +1,6 @@
 require_relative './shift.rb'
 class Enigma
-  include
+  include Shift
   def initialize
 
   end

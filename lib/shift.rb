@@ -1,5 +1,5 @@
 module Shift
   def pad(int)
-    return int.to_s(5, "0")
+    return int.to_s.rjust(5, "0")
   end
 end

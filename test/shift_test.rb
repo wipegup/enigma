@@ -1,5 +1,6 @@
 require './test/test_helper'
 require './lib/shift'
+require './lib/enigma'
 
 class ShiftTest <MiniTest::Test
   def setup
