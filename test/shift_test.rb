@@ -1,3 +1,6 @@
+require './test/test_helper'
+require './lib/shift'
+
 class ShiftTest <MiniTest::Test
   def setup
     @enigma = Enigma.new
@@ -9,5 +12,5 @@ class ShiftTest <MiniTest::Test
 
     assert_equal expected, @enigma.pad(raw)
   end
-  
+
 end
