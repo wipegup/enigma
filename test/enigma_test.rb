@@ -19,5 +19,17 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, actual
   end
 
+  def test_decrypt_follows_interaction_pattern
+    expected = {
+      decryption: "hello world",
+      key: "02715",
+      date: "040895"
+    }
+
+    actual = @enigma.decrypt("keder ohulw", "02715", "040895")
+
+    assert_equal expected, actual
+  end
+
 
 end
