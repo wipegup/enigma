@@ -39,6 +39,13 @@ class ShiftTest < MiniTest::Test
     assert_equal expected, @enigma.int_from_date(date)
   end
 
+  def test_it_can_create_alphabet
+
+    expected = ["a","b","c","d","e","f","g","h","i","j","k","l","m",
+                "n","o","p","q","r","s","t","u","v","w","x","y","z"," "]
+    assert_equal expected, @enigma.alphabet
+  end
+
 
 
 end
