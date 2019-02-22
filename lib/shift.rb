@@ -25,4 +25,8 @@ module Shift
   def shift(num)
     return alphabet.rotate(num)
   end
+
+  def random_number
+    return rand(100000)
+  end
 end
