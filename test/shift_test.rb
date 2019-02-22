@@ -24,4 +24,13 @@ class ShiftTest < MiniTest::Test
     assert todays_date[8..9].to_i <= 31
   end
 
+  def test_it_squares_date_correctly
+    date = "2019-02-21"
+    expected = 44192027961
+    actual = @enigma.square_date(date)
+
+    assert_equal expected, actual
+  end
+
+
 end
