@@ -53,5 +53,11 @@ class ShiftTest < MiniTest::Test
     assert_equal expected, @enigma.shift(2)
   end
 
+  def test_it_creates_random_number_in_correct_range
+    (0..10000).each do |i|
+      assert @enigma.random_number >= 0
+      assert @enigma.random_number<=99999
+    end
+  end
 
 end
