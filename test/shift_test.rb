@@ -32,5 +32,13 @@ class ShiftTest < MiniTest::Test
     assert_equal expected, actual
   end
 
+  def test_it_creates_int_from_date
+    date = "2019-02-21"
+    expected = 210219
+
+    assert_equal expected, @enigma.int_from_date(date)
+  end
+
+
 
 end
