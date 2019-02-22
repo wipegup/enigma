@@ -7,5 +7,9 @@ module Shift
   def today
     return Date.today.strftime
   end
-  
+
+  def int_from_date(date)
+    (date[-2..-1]+date[5..6]+date[2..3]).to_i
+  end
+
 end
