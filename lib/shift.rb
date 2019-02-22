@@ -12,4 +12,7 @@ module Shift
     (date[-2..-1]+date[5..6]+date[2..3]).to_i
   end
 
+  def square_date(date)
+    return int_from_date(date) ** 2
+  end
 end
