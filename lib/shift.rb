@@ -15,4 +15,9 @@ module Shift
   def square_date(date)
     return int_from_date(date) ** 2
   end
+
+  def alphabet
+    letters = (97..122).map{|num| num.chr}
+    letters << " "
+  end
 end
