@@ -60,4 +60,12 @@ class ShiftTest < MiniTest::Test
     end
   end
 
+  def test_it_creates_correct_offsets
+    date = "2019-02-21"
+    random_number = 2253
+    offset = 7961
+    expected = [9, 31, 31, 54]
+    assert_equal expected, @enigma.create_offsets(date, random_number)
+  end
+
 end

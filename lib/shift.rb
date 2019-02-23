@@ -4,6 +4,10 @@ module Shift
     return int.to_s.rjust(5, "0")
   end
 
+  def random_number
+    return rand(100000)
+  end
+  
   def today
     return Date.today.strftime
   end
@@ -26,7 +30,5 @@ module Shift
     return alphabet.rotate(num)
   end
 
-  def random_number
-    return rand(100000)
-  end
+  def
 end
