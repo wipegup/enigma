@@ -4,7 +4,7 @@ module Shift
     return int.to_s.rjust(5, "0")
   end
 
-  def random_number
+  def generate_random_number
     return rand(100000)
   end
 
@@ -34,11 +34,10 @@ module Shift
     return (0..3).to_a.map{|idx| r_number[idx..idx+1]}
   end
 
-  def create_offsets(date, r_number = nil)
+  def create_offsets(date, random_number = nil)
     offset = square_date(date).to_s.chars[-4..-1]
-    r_number = random_number if r_number == nil
-    keys = split_to_keys( pad(r_number) )
+    random_number = generate_random_number if random_number == nil
+    keys = split_to_keys( pad(random_number) )
     return keys.zip(offset).map{|key, offset| key.to_i + offset.to_i}
-
   end
 end
