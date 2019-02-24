@@ -7,7 +7,7 @@ module Shift
   def random_number
     return rand(100000)
   end
-  
+
   def today
     return Date.today.strftime
   end
@@ -30,5 +30,10 @@ module Shift
     return alphabet.rotate(num)
   end
 
-  def
+  def create_offsets(date, r_number = nil)
+    offset = square_date(date).to_s.chars
+    r_number = random_number if r_number == nil
+    r_number = pad(r_number)
+
+  end
 end
