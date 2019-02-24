@@ -32,5 +32,17 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, actual
   end
 
+  def test_encrypt_can_be_used_without_specifying_date
+    skip
+  end
+
+  def test_decrypt_can_be_used_defaulting_to_todays_date
+    skip
+  end
+
+  def test_encrypt_can_generate_random_number_and_todays_date
+    skip
+  end
+
 
 end
