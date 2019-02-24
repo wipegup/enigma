@@ -1,5 +1,6 @@
 require 'date'
 module Shift
+
   def pad(int)
     return int.to_s.rjust(5, "0")
   end
@@ -30,6 +31,12 @@ module Shift
 
   def split_to_keys(r_number)
     return (0..3).to_a.map{|idx| r_number[idx..idx+1]}
+  end
+
+  def offset_from_date(date)
+    date_squared_string = square_date(date).to_s
+    last_four = date_squared_string.chars[-4..-1]
+    return last_four.map{|char| char.to_i}
   end
 
   def create_offsets(date, random_number = nil)
