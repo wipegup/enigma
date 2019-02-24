@@ -39,7 +39,7 @@ module Shift
     return last_four.map{|char| char.to_i}
   end
 
-  def create_offsets(date, random_number = nil)
+  def determine_shifts(date, random_number = nil)
     offset = square_date(date).to_s.chars[-4..-1]
     random_number = generate_random_number if random_number == nil
     keys = split_to_keys( pad(random_number) )
