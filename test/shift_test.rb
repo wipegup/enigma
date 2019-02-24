@@ -73,6 +73,12 @@ class ShiftTest < MiniTest::Test
     assert_equal expected, @enigma.offset_from_date(date)
   end
 
+  def test_it_creates_keys_from_number
+    random_number = 2253
+    expected = [2,22,25,53]
+    assert_equal expected, @enigma.keys_from_number(random_number)
+  end
+
   def test_it_splits_random_number_correctly
     r_number = "02456"
     expected = ["02","24","45","56"]

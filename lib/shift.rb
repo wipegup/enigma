@@ -39,8 +39,10 @@ module Shift
     return last_four.map{|char| char.to_i}
   end
 
-  def determine_shifts(date, random_number = nil)
-    offset = square_date(date).to_s.chars[-4..-1]
+  def determine_shifts(date = nil, random_number = nil)
+    date = today if date == nil
+    offset = offset_from_date(date)
+    
     random_number = generate_random_number if random_number == nil
     keys = split_to_keys( pad(random_number) )
     return keys.zip(offset).map{|key, offset| key.to_i + offset.to_i}
