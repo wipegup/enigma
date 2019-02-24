@@ -30,6 +30,10 @@ module Shift
     return alphabet.rotate(num)
   end
 
+  def split_to_keys(r_number)
+    return (0..3).to_a.map{|idx| r_number[idx..idx+1]}
+  end
+
   def create_offsets(date, r_number = nil)
     offset = square_date(date).to_s.chars
     r_number = random_number if r_number == nil
