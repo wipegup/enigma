@@ -35,9 +35,10 @@ module Shift
   end
 
   def create_offsets(date, r_number = nil)
-    offset = square_date(date).to_s.chars
+    offset = square_date(date).to_s.chars[-4..-1]
     r_number = random_number if r_number == nil
-    r_number = pad(r_number)
+    keys = split_to_keys( pad(r_number) )
+    return keys.zip(offset).map{|key, offset| key.to_i + offset.to_i}
 
   end
 end
