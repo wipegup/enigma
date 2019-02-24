@@ -44,13 +44,13 @@ module Shift
     string_keys = split_to_keys(padded)
     return string_keys.map{|key| key.to_i}
   end
-  
+
   def determine_shifts(date = nil, random_number = nil)
     date = today if date == nil
     offset = offset_from_date(date)
 
     random_number = generate_random_number if random_number == nil
-    keys = split_to_keys( pad(random_number) )
-    return keys.zip(offset).map{|key, offset| key.to_i + offset.to_i}
+    keys = keys_from_number(random_number)
+    return keys.zip(offset).map{|key, offset| key + offset}
   end
 end
