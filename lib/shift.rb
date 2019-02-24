@@ -21,12 +21,10 @@ module Shift
   end
 
   def alphabet
-    letters = (97..122).map{|num| num.chr}
-    letters << " "
-    return letters
+    return ('a'..'z').to_a << " "
   end
 
-  def shift(num)
+  def shift_alphabet(num)
     return alphabet.rotate(num)
   end
 

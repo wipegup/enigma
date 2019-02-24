@@ -49,7 +49,7 @@ class ShiftTest < MiniTest::Test
   def test_it_can_shift_alphabet
     expected = ["c","d","e","f","g","h","i","j","k","l","m","n","o",
                 "p","q","r","s","t","u","v","w","x","y","z"," ","a","b"]
-    assert_equal expected, @enigma.shift(2)
+    assert_equal expected, @enigma.shift_alphabet(2)
   end
 
   def test_it_creates_random_number_in_correct_range
@@ -66,6 +66,7 @@ class ShiftTest < MiniTest::Test
     expected = [9, 31, 31, 54]
     assert_equal expected, @enigma.create_offsets(date, random_number)
   end
+
 
   def test_it_splits_random_number_correctly
     r_number = "02456"
