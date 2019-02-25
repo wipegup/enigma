@@ -42,6 +42,14 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, actual
   end
 
+  def test_decrypt_ciphertext_works
+    shifts =[3, 27, 73, 20]
+    message = "keder ohulw"
+
+    expected = "hello world"
+    assert_equal expected, decrypt_ciphertext(message, shifts)
+  end
+
   def test_encrypt_can_be_used_without_specifying_date
     skip
   end
