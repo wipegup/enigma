@@ -9,7 +9,7 @@ class Enigma
     key = random_key if key == nil
 
     shifts = generate_shifts(key, date)
-    message = message.downcase
-    return create_ciphertext(message, alphabets)
+    text = create_ciphertext(message.downcase, shifts)
+    return {key:key, date:date, encryption: text }
   end
 end
