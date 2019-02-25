@@ -1,3 +1,4 @@
+require './test/test_helper'
 require './lib/enigma'
 class EnigmaTest < MiniTest::Test
   def setup
@@ -29,6 +30,18 @@ class EnigmaTest < MiniTest::Test
     actual = @enigma.decrypt("keder ohulw", "02715", "040895")
 
     assert_equal expected, actual
+  end
+
+  def test_encrypt_can_be_used_without_specifying_date
+    skip
+  end
+
+  def test_decrypt_can_be_used_defaulting_to_todays_date
+    skip
+  end
+
+  def test_encrypt_can_generate_random_number_and_todays_date
+    skip
   end
 
 
