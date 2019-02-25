@@ -20,7 +20,7 @@ class ShiftTest < MiniTest::Test
     assert_instance_of String, key
     assert_equal 5, key.length
   end
-  
+
   def test_it_returns_todays_date_in_correct_order
     today = @enigma.today
 
@@ -60,11 +60,11 @@ class ShiftTest < MiniTest::Test
   end
 
   def test_it_creates_correct_shifts
-    date = "2019-02-21"
-    random_number = 2253
-    offset = 7961
+    date = "210219"
+    key = "02253"
+    # offset = 7961
     expected = [9, 31, 31, 54]
-    assert_equal expected, @enigma.determine_shifts(date, random_number)
+    assert_equal expected, @enigma.generate_shifts(date, random_number)
   end
 
   def test_it_creates_offsets_from_date
@@ -84,4 +84,5 @@ class ShiftTest < MiniTest::Test
     expected = ["02","24","45","56"]
     assert_equal expected, @enigma.split_to_keys(r_number)
   end
+
 end
