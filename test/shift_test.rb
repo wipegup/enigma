@@ -15,15 +15,21 @@ class ShiftTest < MiniTest::Test
   end
 
   def test_it_returns_todays_date_in_correct_order
-    todays_date = @enigma.today
+    today = @enigma.today
 
-    assert_equal "-", todays_date[4]
-    assert_equal "-", todays_date[7]
-    assert todays_date[0..3].to_i >= 2019
-    assert todays_date[5..6].to_i <=12
-    assert todays_date[8..9].to_i <= 31
+    assert_equal "-", today[4]
+    assert_equal "-", today[7]
+    assert today[0..3].to_i >= 2019
+    assert today[5..6].to_i <=12
+    assert today[8..9].to_i <= 31
   end
 
+  def test_it_gives_todays_date_key_in_correct_format
+    todays_date = @enigma.todays_date
+    assert_instance_of String, todays_date
+    assert_equal 6, todays_date.length
+  end
+  
   def test_it_squares_date_correctly
     date = "2019-02-21"
     expected = 44192027961
