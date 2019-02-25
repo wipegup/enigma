@@ -29,4 +29,14 @@ class AlphabetTest < MiniTest::Test
     assert_equal expected, alphabet.alphabet
   end
 
+  def test_it_returns_correct_encoded_letter
+    alphabet = Alphabet.with_shift(2)
+    assert_equal "c", alphabet.encode("a")
+    assert_equal "d", alphabet.encode("b")
+
+    alphabet = Alphabet.new
+    assert_equal "a", alphabet.encode("a")
+    assert_equal "b", alphabet.encode("b")
+  end
+
 end
