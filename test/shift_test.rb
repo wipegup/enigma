@@ -14,6 +14,13 @@ class ShiftTest < MiniTest::Test
     assert_equal expected, @enigma.pad(raw)
   end
 
+  def test_it_creates_random_key_correctly
+    key = @enigma.random_key
+
+    assert_instance_of String, key
+    assert_equal 5, key.length
+  end
+  
   def test_it_returns_todays_date_in_correct_order
     today = @enigma.today
 
@@ -29,7 +36,7 @@ class ShiftTest < MiniTest::Test
     assert_instance_of String, todays_date
     assert_equal 6, todays_date.length
   end
-  
+
   def test_it_squares_date_correctly
     date = "2019-02-21"
     expected = 44192027961
