@@ -48,4 +48,13 @@ class AlphabetTest < MiniTest::Test
     assert_equal 26, alphabet.index_of(" ")
   end
 
+  def test_it_finds_letter_from_index
+    alphabet = Alphabet.new
+    assert_equal "a", alphabet.char_from_index(1)
+    assert_equal "b", alphabet.char_from_index(2)
+    assert_equal "z", alphabet.char_from_index(25)
+    assert_equal " ", alphabet.char_from_index(26)
+  end
+
+
 end
