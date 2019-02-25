@@ -9,6 +9,14 @@ class EnigmaTest < MiniTest::Test
     assert_instance_of Enigma, @enigma
   end
 
+  def test_it_creates_ciphertext
+    shifts = [3, 27, 73, 20]
+    message = "hello world"
+
+    expected = “keder ohulw”
+    assert_equal expected, create_ciphertext(message, shifts)
+  end
+
   def test_encrypt_follows_interaction_pattern
     expected = {
       encryption: "keder ohulw",
