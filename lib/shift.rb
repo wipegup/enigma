@@ -3,8 +3,6 @@ module Shift
 
   def generate_shifts(date, random_number)
     offset = offset_from_date(date)
-
-    random_number = generate_random_number if random_number == nil
     keys = keys_from_number(random_number)
 
     return keys.zip(offset).map{|key, offset| key + offset}
