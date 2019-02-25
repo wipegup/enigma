@@ -16,9 +16,10 @@ class AlphabetTest < MiniTest::Test
   end
 
   def test_it_can_shift_alphabet
+    alphabet = Alphabet.new
     expected = ["c","d","e","f","g","h","i","j","k","l","m","n","o",
                 "p","q","r","s","t","u","v","w","x","y","z"," ","a","b"]
-    assert_equal expected, @alphabet.shift_alphabet(2)
+    assert_equal expected, alphabet.shift_alphabet(2)
   end
 
   def test_it_can_create_alphabet_with_shift
@@ -26,5 +27,6 @@ class AlphabetTest < MiniTest::Test
                 "p","q","r","s","t","u","v","w","x","y","z"," ","a","b"]
     alphabet = Alphabet.with_shift(2)
     assert_equal expected, alphabet.alphabet
+  end
 
 end

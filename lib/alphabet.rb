@@ -1,4 +1,5 @@
 class Alphabet
+    attr_reader :alphabet
     def initialize
       @alphabet = Alphabet.alphabet
     end
@@ -7,7 +8,16 @@ class Alphabet
       return ('a'..'z').to_a << " "
     end
 
-    def shift_alphabet(num)
-      return @alphabet.rotate(num)
+    def self.with_shift(shift)
+      alphabet = Alphabet.new
+      alphabet.shift_alphabet(2)
+      return alphabet
     end
+
+    def shift_alphabet(num)
+      @alphabet =  @alphabet.rotate(num)
+      return @alphabet
+    end
+
+
 end
