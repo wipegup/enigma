@@ -27,6 +27,10 @@ module Shift
     return (0..3).to_a.map{|idx| r_number[idx..idx+1]}
   end
 
+  def random_key
+    return pad(generate_random_number)
+  end
+  
   def pad(int)
     return int.to_s.rjust(5, "0")
   end
@@ -38,7 +42,7 @@ module Shift
   def todays_date
     return int_from_date(today).to_s
   end
-  
+
   def today
     return Date.today.strftime
   end
