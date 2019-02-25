@@ -39,4 +39,11 @@ class AlphabetTest < MiniTest::Test
     assert_equal "b", alphabet.encode("b")
   end
 
+  def test_it_finds_index_of_letter
+    alphabet = Alphabet.new
+
+    assert_equal 0, alphabet.index_of("a")
+    assert_euqal 1, alphabet.index_of("b")
+    assert_equal 26, alphabet.index_of(" ")
+
 end
