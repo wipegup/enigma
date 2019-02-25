@@ -38,16 +38,16 @@ class ShiftTest < MiniTest::Test
   end
 
   def test_it_squares_date_correctly
-    date = "2019-02-21"
+    date = "210219"
     expected = 44192027961
     actual = @enigma.square_date(date)
 
     assert_equal expected, actual
   end
 
-  def test_it_creates_int_from_date
+  def test_it_creates_string_from_date
     date = "2019-02-21"
-    expected = 210219
+    expected = "210219"
 
     assert_equal expected, @enigma.int_from_date(date)
   end
@@ -74,7 +74,7 @@ class ShiftTest < MiniTest::Test
   end
 
   def test_it_creates_keys_from_number
-    random_number = 2253
+    random_number = "02253"
     expected = [2,22,25,53]
     assert_equal expected, @enigma.keys_from_number(random_number)
   end
