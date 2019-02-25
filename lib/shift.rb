@@ -14,11 +14,8 @@ module Shift
     return last_four.map{|char| char.to_i}
   end
 
-  def keys_from_number(number)
-    return split_to_keys(number)
-  end
 
-  def split_to_keys(number)
+  def keys_from_number(number)
     return (0..3).to_a.map{|idx| number[idx..idx+1].to_i}
   end
 
