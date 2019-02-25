@@ -20,4 +20,13 @@ class Enigma
     end
     return encrypted_chars.join("")
   end
+
+  def decrypt(message, key, date = nil)
+    date  = todays_date if date == nil
+
+    shifts = generate_shifts(date, key)
+    text = decrypt_ciphertext(message, shifts)
+    return {key:key, date:date, decryption: text }
+  end
+  
 end
