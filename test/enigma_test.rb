@@ -9,6 +9,12 @@ class EnigmaTest < MiniTest::Test
     assert_instance_of Enigma, @enigma
   end
 
+  def test_it_has_attributes
+    @enigma.encrypt("m", "02573", "220219")
+    assert_equal "02573", @enigma.key
+    assert_equal "220219", @enigma.date
+  end
+
   def test_it_creates_ciphertext
     shifts = [3, 27, 73, 20]
     message = "hello world"
@@ -18,7 +24,6 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_encrypt_follows_interaction_pattern
-    # skip
     expected = {
       encryption: "keder ohulw",
       key: "02715",
