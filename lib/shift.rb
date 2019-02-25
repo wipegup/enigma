@@ -35,6 +35,10 @@ module Shift
     return rand(100000)
   end
 
+  def todays_date
+    return int_from_date(today).to_s
+  end
+  
   def today
     return Date.today.strftime
   end
