@@ -28,5 +28,12 @@ class Enigma
     text = decrypt_ciphertext(message, shifts)
     return {key:key, date:date, decryption: text }
   end
-  
+
+
+  def decrypt_ciphertext(message, shifts)
+    decrypted_chars = message.chars.map.with_index do |char, index|
+      Caeser.decode(char, shifts[index%4])
+    end
+    return decrypted_chars.join("")
+  end
 end

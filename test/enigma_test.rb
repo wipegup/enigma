@@ -30,7 +30,6 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_decrypt_follows_interaction_pattern
-    skip
     expected = {
       decryption: "hello world",
       key: "02715",
@@ -47,7 +46,7 @@ class EnigmaTest < MiniTest::Test
     message = "keder ohulw"
 
     expected = "hello world"
-    assert_equal expected, decrypt_ciphertext(message, shifts)
+    assert_equal expected, @enigma.decrypt_ciphertext(message, shifts)
   end
 
   def test_encrypt_can_be_used_without_specifying_date
