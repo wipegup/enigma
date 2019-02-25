@@ -65,6 +65,13 @@ class ShiftTest < MiniTest::Test
     # offset = 7961
     expected = [9, 31, 31, 54]
     assert_equal expected, @enigma.generate_shifts(date, key)
+
+    date = "040895"
+    key = "02715"
+    # offset = 7961
+    expected = [3, 27, 73, 20]
+    assert_equal expected, @enigma.generate_shifts(date, key)
+
   end
 
   def test_it_creates_offsets_from_date
