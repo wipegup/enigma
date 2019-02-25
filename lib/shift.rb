@@ -46,12 +46,4 @@ module Shift
   def square_date(date)
     return int_from_date(date) ** 2
   end
-
-  def alphabet
-    return ('a'..'z').to_a << " "
-  end
-
-  def shift_alphabet(num)
-    return alphabet.rotate(num)
-  end
 end
