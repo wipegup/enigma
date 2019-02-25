@@ -19,5 +19,11 @@ class Alphabet
       return @alphabet
     end
 
+    def index_of(char)
+      return 26 if char == " "
+      return char.ord-97
+    end
+    
+
 
 end
