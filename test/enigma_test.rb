@@ -50,15 +50,20 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_encrypt_can_be_used_without_specifying_date
-    skip
+    message = "hello"
+    key = "02578"
+    assert_instance_of Hash, @enigma.encrypt(message, key)
   end
 
   def test_decrypt_can_be_used_defaulting_to_todays_date
-    skip
+    message = "hello"
+    key = "02578"
+    assert_instance_of Hash, @enigma.decrypt(message, key)
   end
 
   def test_encrypt_can_generate_random_number_and_todays_date
-    skip
+    message = "Hello"
+    assert_instance_of Hash, @enigma.encrypt(message)
   end
 
 
