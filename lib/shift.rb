@@ -1,11 +1,8 @@
 require 'date'
 module Shift
 
-  def determine_shifts(date = nil, random_number = nil)
-    date = today if date == nil
+  def generate_shifts(date, random_number)
     offset = offset_from_date(date)
-
-    random_number = generate_random_number if random_number == nil
     keys = keys_from_number(random_number)
 
     return keys.zip(offset).map{|key, offset| key + offset}
@@ -17,14 +14,13 @@ module Shift
     return last_four.map{|char| char.to_i}
   end
 
+
   def keys_from_number(number)
-    padded = pad(number)
-    string_keys = split_to_keys(padded)
-    return string_keys.map{|key| key.to_i}
+    return (0..3).to_a.map{|idx| number[idx..idx+1].to_i}
   end
 
-  def split_to_keys(r_number)
-    return (0..3).to_a.map{|idx| r_number[idx..idx+1]}
+  def random_key
+    return pad(generate_random_number)
   end
 
   def pad(int)
@@ -35,15 +31,19 @@ module Shift
     return rand(100000)
   end
 
+  def todays_date
+    return string_from_date(today)
+  end
+
   def today
     return Date.today.strftime
   end
 
-  def int_from_date(date)
-    (date[-2..-1]+date[5..6]+date[2..3]).to_i
+  def string_from_date(date)
+    (date[-2..-1]+date[5..6]+date[2..3])
   end
 
   def square_date(date)
-    return int_from_date(date) ** 2
+    return date.to_i ** 2
   end
 end
