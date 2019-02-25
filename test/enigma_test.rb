@@ -10,11 +10,17 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_key_and_date_default_to_nil
-    assert_equal nil, @enigma.key
-    assert_equal nil, @enigma.date
+    assert_nil @enigma.key
+    assert_nil @enigma.date
   end
 
-  def test_it_has_attributes
+  def test_it_has_attributes_from_encrypt
+    @enigma.encrypt("m", "02573", "220219")
+    assert_equal "02573", @enigma.key
+    assert_equal "220219", @enigma.date
+  end
+
+  def test_it_has_attributes_from_decrypt
     @enigma.encrypt("m", "02573", "220219")
     assert_equal "02573", @enigma.key
     assert_equal "220219", @enigma.date
