@@ -56,5 +56,16 @@ class AlphabetTest < MiniTest::Test
     assert_equal " ", alphabet.char_from_index(26)
   end
 
+  def test_it_can_decode_characters
+    alphabet = Alphabet.with_shift(2)
+    assert_equal "a", alphabet.decode("c")
+    assert_equal "b", alphabet.decode("d")
+    assert_equal "y", alphabet.decode(" ")
+
+    alphabet = Alphabet.new
+    assert_equal "v", alphabet.decode("v")
+    assert_equal " ", alphabet.decode(" ")
+  end
+
 
 end
