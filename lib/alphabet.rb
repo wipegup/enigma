@@ -23,7 +23,10 @@ class Alphabet
       return 26 if char == " "
       return char.ord-97
     end
-    
 
+    def encode(char)
+      index = index_of(char)
+      return @alphabet[index]
+    end
 
 end
