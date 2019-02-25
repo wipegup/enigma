@@ -13,11 +13,12 @@ class EnigmaTest < MiniTest::Test
     shifts = [3, 27, 73, 20]
     message = "hello world"
 
-    expected = “keder ohulw”
-    assert_equal expected, create_ciphertext(message, shifts)
+    expected = 'keder ohulw'
+    assert_equal expected, @enigma.create_ciphertext(message, shifts)
   end
 
   def test_encrypt_follows_interaction_pattern
+    # skip
     expected = {
       encryption: "keder ohulw",
       key: "02715",
@@ -29,6 +30,7 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_decrypt_follows_interaction_pattern
+    skip
     expected = {
       decryption: "hello world",
       key: "02715",
