@@ -30,15 +30,4 @@ class CaeserTest < MiniTest::Test
     assert_equal 25, Caeser.index_of("z")
     assert_equal 26, Caeser.index_of(" ")
   end
-
-  def test_it_finds_letter_from_index
-    assert_equal "a", Caeser.char_from_index(0)
-    assert_equal "b", Caeser.char_from_index(1)
-    assert_equal "z", Caeser.char_from_index(25)
-    assert_equal " ", Caeser.char_from_index(26)
-  end
-
-
-
-
 end
