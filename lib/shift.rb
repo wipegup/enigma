@@ -15,8 +15,7 @@ module Shift
   end
 
   def keys_from_number(number)
-    string_keys = split_to_keys(number)
-    return string_keys.map{|key| key.to_i}
+    return split_to_keys(number)
   end
 
   def split_to_keys(number)
