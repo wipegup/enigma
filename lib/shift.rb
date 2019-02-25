@@ -20,7 +20,7 @@ module Shift
   end
 
   def split_to_keys(number)
-    return (0..3).to_a.map{|idx| number[idx..idx+1]}
+    return (0..3).to_a.map{|idx| number[idx..idx+1].to_i}
   end
 
   def random_key
