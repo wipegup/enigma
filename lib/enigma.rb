@@ -1,5 +1,5 @@
 require_relative './shift.rb'
-require_relative './alphabet.rb'
+require_relative './caeser.rb'
 
 class Enigma
   include Shift

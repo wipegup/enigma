@@ -49,7 +49,7 @@ class ShiftTest < MiniTest::Test
     date = "2019-02-21"
     expected = "210219"
 
-    assert_equal expected, @enigma.int_from_date(date)
+    assert_equal expected, @enigma.string_from_date(date)
   end
 
   def test_it_creates_random_number_in_correct_range
@@ -64,11 +64,11 @@ class ShiftTest < MiniTest::Test
     key = "02253"
     # offset = 7961
     expected = [9, 31, 31, 54]
-    assert_equal expected, @enigma.generate_shifts(date, random_number)
+    assert_equal expected, @enigma.generate_shifts(date, key)
   end
 
   def test_it_creates_offsets_from_date
-    date = "2019-02-21"
+    date = "210219"
     expected = [7,9,6,1]
     assert_equal expected, @enigma.offset_from_date(date)
   end
