@@ -44,6 +44,7 @@ class AlphabetTest < MiniTest::Test
 
     assert_equal 0, alphabet.index_of("a")
     assert_euqal 1, alphabet.index_of("b")
+    assert_equal 25, alphabet.index_of("z")
     assert_equal 26, alphabet.index_of(" ")
 
 end
