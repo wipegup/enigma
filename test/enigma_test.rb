@@ -88,4 +88,13 @@ class EnigmaTest < MiniTest::Test
 
     assert_equal "hello end", @enigma.crack(encrypted[:encryption], "250219")
   end
+
+  def test_find_all_shifts_finds_correct_shifts
+    last_four_reversed = "lobc".reverse
+    # true_shift = [80, 39, 10, 42]
+    expected_shift = [12, 10, 15, 26].reverse
+
+    assert_equal expected_shift, @enigma.find_all_shifts(last_four_reversed)
+  end
+
 end
