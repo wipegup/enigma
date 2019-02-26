@@ -1,8 +1,4 @@
 module Caeser
-
-    def initialize
-    end
-
     def alphabet
       return ('a'..'z').to_a << " "
     end
