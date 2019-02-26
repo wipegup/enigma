@@ -20,6 +20,7 @@ class Enigma
   end
 
   def create_ciphertext(message, shifts)
+    p shifts
     valid_chars = message.chars.find_all{ |char| alphabet.include?(char)}
     encrypted_chars = valid_chars.map.with_index do |char, index|
        encode(char, shifts[index%4])
@@ -45,10 +46,18 @@ class Enigma
     return decrypted_chars.join("")
   end
 
+  def crack(cipher_text, date = nil)
+    date = todays_date if date == nil
+    return {decryption: crack_cipher,
+            date: date,
+            key: find_key(cipher_text, date)}
+  end
+  
   def crack_cipher(message)
     reversed_cipher = message.reverse
     shifts = find_all_shifts(reversed_cipher[0..3])
-    revered_decoded = decrypt_ciphertext(reversed_cipher, shifts)
+    p "cracking #{shifts}"
+    reversed_decoded = decrypt_ciphertext(reversed_cipher, shifts)
     return reversed_decoded.reverse
   end
 
