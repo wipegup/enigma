@@ -54,9 +54,11 @@ class Enigma
   end
 
   def find_key(cipher_text, date)
-
+    shifts = find_all_shifts(cipher_text.reverse[0..3])
+    shifts = shifts.rotate(4-(cipher_text.length %4))
+    
   end
-  
+
   def crack_cipher(message)
     reversed_cipher = message.reverse
     shifts = find_all_shifts(reversed_cipher[0..3])
