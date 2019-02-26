@@ -12,7 +12,6 @@ class Enigma
   def encrypt(message, key = nil, date = nil)
     date = todays_date if date == nil
     key = random_key if key == nil
-
     @date = date
     @key = key
     shifts = generate_shifts( date,key)
@@ -50,10 +49,10 @@ class Enigma
     date = todays_date if date == nil
     reversed_cipher = message.chars.reverse
     shifts = find_all_shifts(reversed_cipher[0..3])
-    reversed_cipher.map.with_index do |char, index|
+    decoded = reversed_cipher.map.with_index do |char, index|
       decode(char, shifts[index%4])
     end
-    return reversed_cipher.reverse.join("")
+    return decoded.reverse.join("")
   end
 
   def find_all_shifts(last_four_reversed)
