@@ -34,5 +34,6 @@ class CaeserTest < MiniTest::Test
   def test_it_can_find_shift_from_char
     assert_equal 2, @enigma.find_shift("a", "c")
     assert_equal 4, @enigma.find_shift("a", "e")
+    assert_equal 1, @enigma.find_shift(" ", "a")
   end
 end
