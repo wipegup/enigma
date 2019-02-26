@@ -97,4 +97,9 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected_shift, @enigma.find_all_shifts(last_four_reversed)
   end
 
+  def test_find_shift_from_actual_and_cipher_index
+    assert_equal 10, @enigma.find_shift_from_indicies(4,14)
+    assert_equal 12, @enigma.find_shift_from_indicies(26,11)
+  end
+
 end
