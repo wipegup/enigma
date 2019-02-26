@@ -48,8 +48,8 @@ class Enigma
   def crack_cipher(message)
     reversed_cipher = message.reverse
     shifts = find_all_shifts(reversed_cipher[0..3])
-    decoded = decrypt_ciphertext(reversed_cipher, shifts)
-    return decoded.reverse
+    revered_decoded = decrypt_ciphertext(reversed_cipher, shifts)
+    return reversed_decoded.reverse
   end
 
   def find_all_shifts(last_four_reversed)
