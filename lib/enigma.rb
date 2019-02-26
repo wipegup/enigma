@@ -21,9 +21,9 @@ class Enigma
   end
 
   def create_ciphertext(message, shifts)
-    valid_chars = message.chars.find_all{ |char| Caeser.alphabet.include?(char)}
+    valid_chars = message.chars.find_all{ |char| alphabet.include?(char)}
     encrypted_chars = valid_chars.map.with_index do |char, index|
-       Caeser.encode(char, shifts[index%4])
+       encode(char, shifts[index%4])
     end
     return encrypted_chars.join("")
   end
@@ -41,7 +41,7 @@ class Enigma
 
   def decrypt_ciphertext(message, shifts)
     decrypted_chars = message.chars.map.with_index do |char, index|
-      Caeser.decode(char, shifts[index%4])
+      decode(char, shifts[index%4])
     end
     return decrypted_chars.join("")
   end
@@ -55,5 +55,21 @@ class Enigma
     end
     return reversed_cipher.reverse.join("")
   end
+
+  def find_all_shifts(last_four_reversed)
+    shifts = []
+    "dne ".chars.zip(last_four_reversed).each do |actual, cipher|
+      actual_index = alphabet.find_index(actual)
+      cipher_index = alphabet.find_index(cipher)
+      if cipher_index > actual_index
+        shifts << cipher_index - actual_index
+      else
+        shifts << 27 - (actual_index - cipher_index)
+      end
+
+    end
+    return shifts
+  end
+
 
 end
