@@ -2,7 +2,7 @@ require_relative './shift.rb'
 require_relative './caeser.rb'
 
 class Enigma
-  include Shift
+  include Shift, Caeser
   attr_reader :date, :key
   def initialize
     @date = nil
