@@ -4,7 +4,7 @@ class EnigmaTest < MiniTest::Test
   def setup
     @enigma = Enigma.new()
   end
-  
+
   def test_it_exists
     assert_instance_of Enigma, @enigma
   end
@@ -86,11 +86,11 @@ class EnigmaTest < MiniTest::Test
     message = "hello end"
     encrypted = @enigma.encrypt(message, "02571", "250219")
 
-    assert_equal "hello end", @enigma.crack(encrypted[:encryption], "250219")
+    assert_equal "hello end", @enigma.crack_cipher(encrypted[:encryption])
   end
 
   def test_find_all_shifts_finds_correct_shifts
-    last_four_reversed = ["c", "b", "o", "l"]
+    last_four_reversed = "cbol"
     # true_shift = [80, 39, 10, 42]
     expected_shift = [26,15,10,12]
 
