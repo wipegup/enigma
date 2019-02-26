@@ -82,5 +82,10 @@ class EnigmaTest < MiniTest::Test
     assert_instance_of Hash, @enigma.encrypt(message)
   end
 
+  def test_crack_can_crack_code_with_todays_date
+    message = "hello end"
+    encrypted = @enigma.encrypt(message, "02571", "250219")
 
+    assert_equal "hello end", @enigma.crack(encrypted[:encryption], "250219")
+  end
 end
