@@ -45,4 +45,15 @@ class Enigma
     end
     return decrypted_chars.join("")
   end
+
+  def crack(message, date= nil)
+    date = todays_date if date == nil
+    reversed_cipher = message.chars.reverse
+    shifts = find_all_shifts(reversed_cipher[0..3])
+    reversed_cipher.map.with_index do |char, index|
+      decode(char, shifts[index%4])
+    end
+    return reversed_cipher.reverse.join("")
+  end
+
 end
