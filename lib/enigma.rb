@@ -48,9 +48,13 @@ class Enigma
 
   def crack(cipher_text, date = nil)
     date = todays_date if date == nil
-    return {decryption: crack_cipher,
+    return {decryption: crack_cipher(cipher_text),
             date: date,
             key: find_key(cipher_text, date)}
+  end
+
+  def find_key(cipher_text, date)
+
   end
   
   def crack_cipher(message)
