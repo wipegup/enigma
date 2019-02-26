@@ -57,15 +57,14 @@ class Enigma
     "dne ".chars.zip(last_four_reversed.chars).each do |actual, cipher|
       actual_index = alphabet.find_index(actual)
       cipher_index = alphabet.find_index(cipher)
-      if cipher_index > actual_index
-        shifts << cipher_index - actual_index
-      else
-        shifts << 27 - (actual_index - cipher_index)
-      end
-
+      shifts << find_shift_from_indicies(actual_index, cipher_index)
     end
     return shifts
   end
 
+  def find_shift_from_indicies(actual, cipher)
+      return cipher - actual if cipher > actual
+      return 27 - (actual - cipher)
+  end
 
 end
