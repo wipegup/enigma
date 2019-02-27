@@ -48,12 +48,12 @@ class Enigma
     p "fk #{shifts}"
     offsets = offset_from_date(date)
 
-    uncorrected_keys = shifts.zip(offsets).map{ |shift, offset| shift - offset}
+    raw_keys = shifts.zip(offsets).map{ |shift, offset| shift - offset}
 
-    key_start = uncorrected_keys[0].to_s.rjust(2, "0")
+    key_start = raw_keys[0].to_s.rjust(2, "0")
     key = key_start
     while key_start.length < 3
-      uncorrected_keys[1..-1].each do |uk|
+      raw_keys[1..-1].each do |uk|
         start = key[-1].to_i
         x = ((start * 10 + 9)- uk)/27
         k = 27 * x + uk
