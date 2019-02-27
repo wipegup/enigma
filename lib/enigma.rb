@@ -49,7 +49,10 @@ class Enigma
     offsets = offset_from_date(date)
 
     raw_keys = shifts.zip(offsets).map{ |shift, offset| shift - offset}
-    p raw_keys
+    return valid_key_from_raw(raw_keys)
+  end
+
+  def valid_key_from_raw(raw_keys)
     key_start = raw_keys[0].to_s.rjust(2, "0")
     key = key_start
     while key_start.length < 3
@@ -69,7 +72,6 @@ class Enigma
     end
     return key
   end
-
   def crack_cipher(message)
     shifts = find_all_shifts(message)
     decrypt_ciphertext(message, shifts)
