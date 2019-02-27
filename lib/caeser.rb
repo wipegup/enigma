@@ -12,6 +12,7 @@ module Caeser
     def decode(char, shift)
       shifted_alphabet = alphabet.rotate(shift)
       index = shifted_alphabet.find_index(char)
+      return char if index == nil
       return alphabet[index]
     end
 
