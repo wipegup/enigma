@@ -81,9 +81,11 @@ class Enigma
     decrypt_ciphertext(message, shifts)
   end
 
-  def find_all_shifts(last_four)
-    " end".chars.zip(last_four.chars).inject([]) do |shifts, (actual, cipher)|
+  def find_all_shifts(message)
+    last_four = message[-4..-1].chars
+    shifts = " end".chars.zip(last_four).inject([]) do |shifts, (actual, cipher)|
       shifts << find_shift(actual, cipher)
     end
+    return rotate_shifts(message, shifts)
   end
 end
