@@ -127,4 +127,9 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, @enigma.rotate_shifts(cipher_text, shifts)
   end
 
+  def test_it_creates_key_start
+    assert_equal "02", @enigma.start_key(2, 0)
+    assert_equal "29", @enigma.start_key(2,1)
+  end
+  
 end

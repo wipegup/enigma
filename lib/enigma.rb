@@ -50,17 +50,16 @@ class Enigma
   end
 
   def valid_key_from_raw(raw_keys)
-    key_start = raw_keys[0].to_s.rjust(2, "0")
-    key = key_start
-    while key_start.length < 3
+
+    (0..3).to_a.each do |iteration|
+      key = (raw_keys[0] + (iteration * 27)).to_s.rjust(2, "0")
+      break if key.length < 3
       raw_keys[1..-1].each do |raw_shift|
         to_add = value_to_add(key, raw_shift)
         break if invalid_sequence?(key, to_add, raw_shift)
         key += to_add.to_s[-1]
       end
       return key if key.length == 5
-      key_start = (key_start.to_i + 27).to_s
-      key = key_start
     end
   end
 
