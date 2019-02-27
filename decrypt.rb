@@ -6,4 +6,4 @@ ciphertext = IO.read(input)
 decrypted = enigma.decrypt(ciphertext, key, date)
 IO.write(output, decrypted[:decryption])
 
-puts "Created '#{output}' with the key #{enigma.key} and date #{enigma.date}"
+puts "Created '#{output}' with the key #{decrypted[:key]} and date #{decrypted[:date]}"
