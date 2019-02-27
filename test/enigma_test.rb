@@ -9,22 +9,22 @@ class EnigmaTest < MiniTest::Test
     assert_instance_of Enigma, @enigma
   end
 
-  def test_key_and_date_default_to_nil
-    assert_nil @enigma.key
-    assert_nil @enigma.date
-  end
-
-  def test_it_has_attributes_from_encrypt
-    @enigma.encrypt("m", "02573", "220219")
-    assert_equal "02573", @enigma.key
-    assert_equal "220219", @enigma.date
-  end
-
-  def test_it_has_attributes_from_decrypt
-    @enigma.encrypt("m", "02573", "220219")
-    assert_equal "02573", @enigma.key
-    assert_equal "220219", @enigma.date
-  end
+  # def test_key_and_date_default_to_nil
+  #   assert_nil @enigma.key
+  #   assert_nil @enigma.date
+  # end
+  #
+  # def test_it_has_attributes_from_encrypt
+  #   @enigma.encrypt("m", "02573", "220219")
+  #   assert_equal "02573", @enigma.key
+  #   assert_equal "220219", @enigma.date
+  # end
+  #
+  # def test_it_has_attributes_from_decrypt
+  #   @enigma.encrypt("m", "02573", "220219")
+  #   assert_equal "02573", @enigma.key
+  #   assert_equal "220219", @enigma.date
+  # end
 
   def test_it_creates_ciphertext
     shifts = [3, 27, 73, 20]

@@ -3,17 +3,16 @@ require_relative './caeser.rb'
 
 class Enigma
   include Shift, Caeser
-  attr_reader :date, :key
+  # attr_reader :date, :key
   def initialize
-    @date = nil
-    @key = nil
+    # @date = nil
+    # @key = nil
   end
 
   def encrypt(message, key = nil, date = nil)
     date = todays_date if date == nil
     key = random_key if key == nil
-    @date = date
-    @key = key
+    # @date = date; @key = key
     shifts = generate_shifts( date,key)
     text = create_ciphertext(message.downcase, shifts)
     return {key:key, date:date, encryption: text }
@@ -30,9 +29,7 @@ class Enigma
 
   def decrypt(message, key, date = nil)
     date  = todays_date if date == nil
-
-    @date = date
-    @key = key
+    # @date = date; @key = key
     shifts = generate_shifts(date, key)
     text = decrypt_ciphertext(message, shifts)
     return {key:key, date:date, decryption: text }
