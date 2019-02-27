@@ -107,6 +107,10 @@ class EnigmaTest < MiniTest::Test
     assert_equal false, @enigma.invalid_sequence?("02",25, -2)
   end
 
+  def test_find_potential_value_to_add
+    assert_equal 83, @enigma.value_to_add("08", 2)
+  end
+
   #
   # def test_find_all_shifts_finds_correct_shifts
   #   message= "gzennlobc"
