@@ -4,7 +4,8 @@ module Caeser
     end
 
     def encode(char, shift)
-      index = index_of(char)
+      index = alphabet.find_index(char)
+      return char if index == nil
       return alphabet.rotate(shift)[index]
     end
 
@@ -13,15 +14,15 @@ module Caeser
       index = shifted_alphabet.find_index(char)
       return alphabet[index]
     end
-
-    def index_of(char)
-      return 26 if char == " "
-      return char.ord-97
-    end
+    #
+    # def index_of(char)
+    #   return 26 if char == " "
+    #   return char.ord-97
+    # end
 
     def find_shift(expected, actual)
-      index_expected = index_of(expected)
-      index_actual = index_of(actual)
+      index_expected = alphabet.find_index(expected)
+      index_actual = alphabet.find_index(actual)
 
       return index_actual - index_expected if index_actual >= index_expected
       return 27 - index_expected + index_actual

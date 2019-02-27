@@ -23,13 +23,13 @@ class CaeserTest < MiniTest::Test
     assert_equal "v", @enigma.decode("v", 0)
     assert_equal " ", @enigma.decode(" ", 0)
   end
-
-  def test_it_finds_index_of_letter
-    assert_equal 0, @enigma.index_of("a")
-    assert_equal 1, @enigma.index_of("b")
-    assert_equal 25, @enigma.index_of("z")
-    assert_equal 26, @enigma.index_of(" ")
-  end
+  #
+  # def test_it_finds_index_of_letter
+  #   assert_equal 0, @enigma.index_of("a")
+  #   assert_equal 1, @enigma.index_of("b")
+  #   assert_equal 25, @enigma.index_of("z")
+  #   assert_equal 26, @enigma.index_of(" ")
+  # end
 
   def test_it_can_find_shift_from_char
     assert_equal 2, @enigma.find_shift("a", "c")
