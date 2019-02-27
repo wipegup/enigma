@@ -85,7 +85,7 @@ class Enigma
 
   def find_all_shifts(last_four)
     shifts = []
-    " end".chars.zip(last_four_reversed.chars).each do |actual, cipher|
+    " end".chars.zip(last_four.chars).each do |actual, cipher|
       shifts << find_shift(actual, cipher)
     end
     return shifts
