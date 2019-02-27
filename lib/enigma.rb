@@ -72,6 +72,11 @@ class Enigma
     return key
   end
 
+  def value_to_add(key, raw_shift)
+    multiplier = ((key[-1].to_i * 10 + 9) - raw_shift)/27
+    27 * multiplier + raw_shift
+  end
+  
   def invalid_sequence?(key, to_add, raw_shift)
     return true if ((to_add - 27 != raw_shift) && (to_add % 27 != raw_shift))
     return true if to_add.to_s.rjust(2, "0")[0] != key[-1]
