@@ -93,16 +93,14 @@ class Enigma
   def find_all_shifts(last_four_reversed)
     shifts = []
     "dne ".chars.zip(last_four_reversed.chars).each do |actual, cipher|
-      actual_index = alphabet.find_index(actual)
-      cipher_index = alphabet.find_index(cipher)
-      shifts << find_shift_from_indicies(actual_index, cipher_index)
+      shifts << find_shift(actual, cipher)
     end
     return shifts
   end
 
-  def find_shift_from_indicies(actual, cipher)
-      return cipher - actual if cipher > actual
-      return 27 - (actual - cipher)
-  end
+  # def find_shift_from_indicies(actual, cipher)
+  #     return cipher - actual if cipher > actual
+  #     return 27 - (actual - cipher)
+  # end
 
 end
