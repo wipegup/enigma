@@ -93,12 +93,31 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected, @enigma.find_key(cipher_text, date)
   end
 
-  def test_find_all_shifts_finds_correct_shifts
-    last_four_reversed = "lobc"
-    # true_shift = [80, 39, 10, 42]
-    expected_shift = [12,10,15,26]
+  def test_valid_key_from_raw_key
+    raw_keys = [8,2,3,4]
+    expected = "08304"
 
-    assert_equal expected_shift, @enigma.find_all_shifts(last_four_reversed)
+    assert_equal expected, @enigma.valid_key_from_raw(raw_keys)
+  end
+
+  def test_invalid_sequence
+    assert_equal false, @enigma.invalid_sequence?("08", 83, 2)
+    assert_equal true, @enigma.invalid_sequence?("08",84, 2)
+    assert_equal true, @enigma.invalid_sequence?("08",29, 2)
+    assert_equal false, @enigma.invalid_sequence?("02",25, -2)
+  end
+
+  def test_find_potential_value_to_add
+    assert_equal 83, @enigma.value_to_add("08", 2)
+  end
+
+
+  def test_find_all_shifts_finds_correct_shifts
+    message= "gzennlobc"
+    # true_shift = [80, 39, 10, 42]
+    expected_shift = [26, 12,10,15]
+
+    assert_equal expected_shift, @enigma.find_all_shifts(message)
   end
 
   def test_rotate_shifts_to_correct_order
