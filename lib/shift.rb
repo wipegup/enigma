@@ -4,7 +4,6 @@ module Shift
   def generate_shifts(date, random_number)
     offset = offset_from_date(date)
     keys = keys_from_number(random_number)
-
     return keys.zip(offset).map{|key, offset| key + offset}
   end
 

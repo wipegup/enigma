@@ -9,22 +9,22 @@ class EnigmaTest < MiniTest::Test
     assert_instance_of Enigma, @enigma
   end
 
-  def test_key_and_date_default_to_nil
-    assert_nil @enigma.key
-    assert_nil @enigma.date
-  end
-
-  def test_it_has_attributes_from_encrypt
-    @enigma.encrypt("m", "02573", "220219")
-    assert_equal "02573", @enigma.key
-    assert_equal "220219", @enigma.date
-  end
-
-  def test_it_has_attributes_from_decrypt
-    @enigma.encrypt("m", "02573", "220219")
-    assert_equal "02573", @enigma.key
-    assert_equal "220219", @enigma.date
-  end
+  # def test_key_and_date_default_to_nil
+  #   assert_nil @enigma.key
+  #   assert_nil @enigma.date
+  # end
+  #
+  # def test_it_has_attributes_from_encrypt
+  #   @enigma.encrypt("m", "02573", "220219")
+  #   assert_equal "02573", @enigma.key
+  #   assert_equal "220219", @enigma.date
+  # end
+  #
+  # def test_it_has_attributes_from_decrypt
+  #   @enigma.encrypt("m", "02573", "220219")
+  #   assert_equal "02573", @enigma.key
+  #   assert_equal "220219", @enigma.date
+  # end
 
   def test_it_creates_ciphertext
     shifts = [3, 27, 73, 20]
@@ -82,5 +82,45 @@ class EnigmaTest < MiniTest::Test
     assert_instance_of Hash, @enigma.encrypt(message)
   end
 
+  def test_crack_can_crack_code
+    message = "hello end"
+    encrypted = @enigma.encrypt(message, "02571", "250219")
+
+    assert_equal "hello end", @enigma.crack_cipher(encrypted[:encryption])
+  end
+
+  def test_crack_with_todays_date
+      message = "hello end"
+      encrypted = @enigma.encrypt(message, "02571", "250219")
+
+      expected = {decryption: "hello end",
+                  date: "250219",
+                  key: "02571"}
+      # offset_from_date 7961
+      # shifts 9, 34, 63, 72
+      assert_equal expected, @enigma.crack(encrypted[:encryption], "250219")
+  end
+
+  def test_find_key
+    cipher_text = "vjqtbeaweqihssi"
+    date = "291018"
+    p @enigma.encrypt("hello world end", "08304", "291018")
+    expected = "08304"
+    # "19348"
+    assert_equal expected, @enigma.find_key(cipher_text, date)
+  end
+
+  def test_find_all_shifts_finds_correct_shifts
+    last_four_reversed = "cbol"
+    # true_shift = [80, 39, 10, 42]
+    expected_shift = [26,15,10,12]
+
+    assert_equal expected_shift, @enigma.find_all_shifts(last_four_reversed)
+  end
+
+  # def test_find_shift_from_actual_and_cipher_index
+  #   assert_equal 10, @enigma.find_shift_from_indicies(4,14)
+  #   assert_equal 12, @enigma.find_shift_from_indicies(26,11)
+  # end
 
 end
