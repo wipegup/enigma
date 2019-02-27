@@ -13,7 +13,6 @@ class Enigma
   end
 
   def create_ciphertext(message, shifts)
-    p "Cipher text shifts #{shifts}"
     encrypted_chars = message.chars.map.with_index do |char, index|
        encode(char, shifts[index%4])
     end
@@ -44,8 +43,6 @@ class Enigma
 
   def find_key(cipher_text, date)
     shifts = find_all_shifts(cipher_text)
-
-    p "fk #{shifts}"
     offsets = offset_from_date(date)
 
     raw_keys = shifts.zip(offsets).map{ |shift, offset| shift - offset}
@@ -57,26 +54,21 @@ class Enigma
     key = key_start
     while key_start.length < 3
       raw_keys[1..-1].each do |raw_shift|
-         p raw_shift
-        multiplier = ((key[-1].to_i * 10 + 9) - raw_shift)/27
-        to_add = 27 * multiplier + raw_shift
+        to_add = value_to_add(key, raw_shift)
         break if invalid_sequence?(key, to_add, raw_shift)
-
         key += to_add.to_s[-1]
-
       end
-      break if key.length == 5
+      return key if key.length == 5
       key_start = (key_start.to_i + 27).to_s
       key = key_start
     end
-    return key
   end
 
   def value_to_add(key, raw_shift)
     multiplier = ((key[-1].to_i * 10 + 9) - raw_shift)/27
     27 * multiplier + raw_shift
   end
-  
+
   def invalid_sequence?(key, to_add, raw_shift)
     return true if ((to_add - 27 != raw_shift) && (to_add % 27 != raw_shift))
     return true if to_add.to_s.rjust(2, "0")[0] != key[-1]
