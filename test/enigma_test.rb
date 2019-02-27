@@ -9,28 +9,11 @@ class EnigmaTest < MiniTest::Test
     assert_instance_of Enigma, @enigma
   end
 
-  # def test_key_and_date_default_to_nil
-  #   assert_nil @enigma.key
-  #   assert_nil @enigma.date
-  # end
-  #
-  # def test_it_has_attributes_from_encrypt
-  #   @enigma.encrypt("m", "02573", "220219")
-  #   assert_equal "02573", @enigma.key
-  #   assert_equal "220219", @enigma.date
-  # end
-  #
-  # def test_it_has_attributes_from_decrypt
-  #   @enigma.encrypt("m", "02573", "220219")
-  #   assert_equal "02573", @enigma.key
-  #   assert_equal "220219", @enigma.date
-  # end
-
   def test_it_creates_ciphertext
     shifts = [3, 27, 73, 20]
-    message = "hello world"
+    message = "hello world!"
 
-    expected = 'keder ohulw'
+    expected = 'keder ohulw!'
     assert_equal expected, @enigma.create_ciphertext(message, shifts)
   end
 
@@ -111,16 +94,19 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_find_all_shifts_finds_correct_shifts
-    last_four_reversed = "cbol"
+    last_four_reversed = "lobc"
     # true_shift = [80, 39, 10, 42]
-    expected_shift = [26,15,10,12]
+    expected_shift = [12,10,15,26]
 
     assert_equal expected_shift, @enigma.find_all_shifts(last_four_reversed)
   end
 
-  # def test_find_shift_from_actual_and_cipher_index
-  #   assert_equal 10, @enigma.find_shift_from_indicies(4,14)
-  #   assert_equal 12, @enigma.find_shift_from_indicies(26,11)
-  # end
+  def test_rotate_shifts_to_correct_order
+    cipher_text = "gzennuypc"
+    shifts = [1,2,3,0]
+
+    expected = [0,1,2,3]
+    assert_equal expected, @enigma.rotate_shifts(cipher_text, shifts)
+  end
 
 end
