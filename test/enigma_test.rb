@@ -87,7 +87,6 @@ class EnigmaTest < MiniTest::Test
   def test_find_key
     cipher_text = "vjqtbeaweqihssi"
     date = "291018"
-    p @enigma.encrypt("hello world end", "08304", "291018")
     expected = "08304"
     # "19348"
     assert_equal expected, @enigma.find_key(cipher_text, date)
