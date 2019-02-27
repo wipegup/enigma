@@ -96,18 +96,20 @@ class EnigmaTest < MiniTest::Test
       expected = {decryption: "hello end",
                   date: "250219",
                   key: "02571"}
-
-      assert_equal "hello end", @enigma.crack(encrypted[:encryption], "250219")
+      # offset_from_date 7961
+      # shifts 9, 34, 63, 72
+      assert_equal expected, @enigma.crack(encrypted[:encryption], "250219")
   end
 
   def test_find_key
-    cipher_text = "gqv nlobc"
-    date = "250219"
+    cipher_text = "gzennuypc"
+    date = "260219"
 
-    expected = "02571"
+    expected = "73955"
+    # "19348"
     assert_equal expected, @enigma.find_key(cipher_text, date)
   end
-  
+
   #
   # def test_find_all_shifts_finds_correct_shifts
   #   last_four_reversed = "cbol"

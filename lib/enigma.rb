@@ -55,8 +55,33 @@ class Enigma
 
   def find_key(cipher_text, date)
     shifts = find_all_shifts(cipher_text.reverse[0..3])
-    shifts = shifts.rotate(4-(cipher_text.length %4))
-    
+    rotate_amount = 4-((cipher_text.length) %4)
+    # rotate_amount = 4 - (cipher_text.length % 4)
+    # p rotate_amount
+    shifts = shifts.reverse.rotate(rotate_amount)#(4-(cipher_text.length %4)))
+
+    offset = offset_from_date(date)
+
+    uncorrected_keys = shifts.zip(offset).map do |shift, off|
+      shift - off
+    end
+
+    key = uncorrected_keys[0].to_s.rjust(2, "0")
+    uncorrected_keys[1..-1].each do |uk|
+      # require 'pry'; binding.pry
+      start = key[-1].to_i
+      x = ((start * 10 + 9)- uk)/27
+      k = 27 * x + uk
+      key += k.to_s[1]
+    end
+    return key
+
+    #(27 * x) + uk = s9
+    # s9 -uk //27 = x
+    # k = 27 *x + uk
+    # key += k.to_s[1]
+
+
   end
 
   def crack_cipher(message)
