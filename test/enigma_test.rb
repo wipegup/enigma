@@ -94,9 +94,9 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_find_all_shifts_finds_correct_shifts
-    last_four_reversed = "cbol"
+    last_four_reversed = "lobc"
     # true_shift = [80, 39, 10, 42]
-    expected_shift = [26,15,10,12]
+    expected_shift = [12,10,15,26]
 
     assert_equal expected_shift, @enigma.find_all_shifts(last_four_reversed)
   end

@@ -43,9 +43,8 @@ class Enigma
   end
 
   def find_key(cipher_text, date)
-    shifts = find_all_shifts(cipher_text.reverse[0..3])
-    rotate_amount = 4-((cipher_text.length) %4)
-    shifts = shifts.reverse.rotate(rotate_amount)
+    shifts = find_all_shifts(cipher_text[-4..-1])
+    shifts = rotate_shifts(cipher_text, shifts)
     p "fk #{shifts}"
     offsets = offset_from_date(date)
 
@@ -79,7 +78,6 @@ class Enigma
   def crack_cipher(message)
     shifts = find_all_shifts(message[-4..-1])
     shifts = rotate_shifts(message, shifts)
-    p "cracking #{shifts}"
     decrypt_ciphertext(message, shifts)
   end
 
