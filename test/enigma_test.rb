@@ -82,30 +82,30 @@ class EnigmaTest < MiniTest::Test
   #   assert_instance_of Hash, @enigma.encrypt(message)
   # end
   #
-  def test_crack_can_crack_code
-    message = "hello end"
-    encrypted = @enigma.encrypt(message, "02571", "250219")
-
-    assert_equal "hello end", @enigma.crack_cipher(encrypted[:encryption])
-  end
-
-  def test_crack_with_todays_date
-      message = "hello end"
-      encrypted = @enigma.encrypt(message, "02571", "250219")
-
-      expected = {decryption: "hello end",
-                  date: "250219",
-                  key: "02571"}
-      # offset_from_date 7961
-      # shifts 9, 34, 63, 72
-      assert_equal expected, @enigma.crack(encrypted[:encryption], "250219")
-  end
+  # def test_crack_can_crack_code
+  #   message = "hello end"
+  #   encrypted = @enigma.encrypt(message, "02571", "250219")
+  #
+  #   assert_equal "hello end", @enigma.crack_cipher(encrypted[:encryption])
+  # end
+  #
+  # def test_crack_with_todays_date
+  #     message = "hello end"
+  #     encrypted = @enigma.encrypt(message, "02571", "250219")
+  #
+  #     expected = {decryption: "hello end",
+  #                 date: "250219",
+  #                 key: "02571"}
+  #     # offset_from_date 7961
+  #     # shifts 9, 34, 63, 72
+  #     assert_equal expected, @enigma.crack(encrypted[:encryption], "250219")
+  # end
 
   def test_find_key
-    cipher_text = "gzennuypc"
-    date = "260219"
-
-    expected = "73955"
+    cipher_text = "vjqtbeaweqihssi"
+    date = "291018"
+    p @enigma.encrypt("hello world end", "08304", "291018")
+    expected = "08304"
     # "19348"
     assert_equal expected, @enigma.find_key(cipher_text, date)
   end
