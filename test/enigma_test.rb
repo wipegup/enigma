@@ -101,10 +101,10 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_invalid_sequence
-    assert_equal true, @enigma.invalid_sequence?("08", "83", 2)
-    assert_equal false, @enigma.invalid_sequence?("08","84", 2)
-    assert_equal false, @enigma.invalid_sequence?("08","29", 2)
-    assert_equal true, @enigma.invalid_sequence?("02","25", -2)
+    assert_equal true, @enigma.invalid_sequence?("08", 83, 2)
+    assert_equal false, @enigma.invalid_sequence?("08",84, 2)
+    assert_equal false, @enigma.invalid_sequence?("08",29, 2)
+    assert_equal true, @enigma.invalid_sequence?("02",25, -2)
   end
 
 

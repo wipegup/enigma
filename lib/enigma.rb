@@ -72,6 +72,13 @@ class Enigma
     end
     return key
   end
+
+  def invalid_sequence?(key, to_add, raw_shift)
+    return false if ((to_add - 27 != raw_shift) && (to_add % 27 != raw_shift))
+    return false if to_add.to_s.rjust(2, "0")[0] != key[-1]
+    return true
+  end
+
   def crack_cipher(message)
     shifts = find_all_shifts(message)
     decrypt_ciphertext(message, shifts)
