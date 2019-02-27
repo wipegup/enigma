@@ -131,5 +131,5 @@ class EnigmaTest < MiniTest::Test
     assert_equal "02", @enigma.start_key(2, 0)
     assert_equal "29", @enigma.start_key(2,1)
   end
-  
+
 end
