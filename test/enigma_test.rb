@@ -94,10 +94,17 @@ class EnigmaTest < MiniTest::Test
   end
 
   def test_valid_key_from_raw_key
-    raw_key = [8,2,3,4]
+    raw_keys = [8,2,3,4]
     expected = "08304"
 
-    assert_equal expected, @enigma.valid_key_from_raw(raw_key)
+    assert_equal expected, @enigma.valid_key_from_raw(raw_keys)
+  end
+
+  def test_invalid_sequence
+    assert_equal true, @enigma.invalid_sequence?("08", "83", 2)
+    assert_equal false, @enigma.invalid_sequence?("08","84", 2)
+    assert_equal false, @enigma.invalid_sequence?("08","29", 2)
+    assert_equal true, @enigma.invalid_sequence?("02","25", -2)
   end
 
 
