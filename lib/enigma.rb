@@ -56,27 +56,19 @@ class Enigma
   def find_key(cipher_text, date)
     shifts = find_all_shifts(cipher_text.reverse[0..3])
     rotate_amount = 4-((cipher_text.length) %4)
-    # rotate_amount = 4 - (cipher_text.length % 4)
-    # p rotate_amount
-    shifts = shifts.reverse.rotate(rotate_amount)#(4-(cipher_text.length %4)))
+    shifts = shifts.reverse.rotate(rotate_amount)
+    offsets = offset_from_date(date)
 
-    offset = offset_from_date(date)
-
-    uncorrected_keys = shifts.zip(offset).map do |shift, off|
-      shift - off
-    end
+    uncorrected_keys = shifts.zip(offsets).map{ |shift, offset| shift - offset}
 
     key_start = uncorrected_keys[0].to_s.rjust(2, "0")
     key = key_start
     while key_start.length < 3
-      p key_start
-      p key
       uncorrected_keys[1..-1].each do |uk|
-        # require 'pry'; binding.pry
         start = key[-1].to_i
         x = ((start * 10 + 9)- uk)/27
         k = 27 * x + uk
-        p "k #{k}, key: #{key},uk #{uk}"
+        # p "k #{k}, key: #{key},uk #{uk}"
         if ((k-27 != uk) && (k % 27 != uk)) || (k.to_s.rjust(2,"0")[0] != start.to_s)
           # p "k #{k}, key: #{key},uk #{uk}"
           break
@@ -89,15 +81,8 @@ class Enigma
       key = key_start
     end
 
-    p "find_keys uk #{uncorrected_keys}, sh #{shifts}, off #{offset}"
+    # p "find_keys uk #{uncorrected_keys}, sh #{shifts}, off #{offsets}"
     return key
-
-    #(27 * x) + uk = s9
-    # s9 -uk //27 = x
-    # k = 27 *x + uk
-    # key += k.to_s[1]
-
-
   end
 
   def crack_cipher(message)
