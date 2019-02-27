@@ -14,11 +14,6 @@ module Caeser
       index = shifted_alphabet.find_index(char)
       return alphabet[index]
     end
-    #
-    # def index_of(char)
-    #   return 26 if char == " "
-    #   return char.ord-97
-    # end
 
     def find_shift(expected, actual)
       index_expected = alphabet.find_index(expected)

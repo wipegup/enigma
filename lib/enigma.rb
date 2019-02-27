@@ -3,16 +3,10 @@ require_relative './caeser.rb'
 
 class Enigma
   include Shift, Caeser
-  # attr_reader :date, :key
-  def initialize
-    # @date = nil
-    # @key = nil
-  end
 
   def encrypt(message, key = nil, date = nil)
     date = todays_date if date == nil
     key = random_key if key == nil
-    # @date = date; @key = key
     shifts = generate_shifts( date,key)
     text = create_ciphertext(message.downcase, shifts)
     return {key:key, date:date, encryption: text }
@@ -29,7 +23,6 @@ class Enigma
 
   def decrypt(message, key, date = nil)
     date  = todays_date if date == nil
-    # @date = date; @key = key
     shifts = generate_shifts(date, key)
     text = decrypt_ciphertext(message, shifts)
     return {key:key, date:date, decryption: text }
@@ -65,9 +58,7 @@ class Enigma
         start = key[-1].to_i
         x = ((start * 10 + 9)- uk)/27
         k = 27 * x + uk
-        # p "k #{k}, key: #{key},uk #{uk}"
         if ((k-27 != uk) && (k % 27 != uk)) || (k.to_s.rjust(2,"0")[0] != start.to_s)
-          # p "k #{k}, key: #{key},uk #{uk}"
           break
         end
 
@@ -77,8 +68,6 @@ class Enigma
       key_start = (key_start.to_i + 27).to_s
       key = key_start
     end
-
-    # p "find_keys uk #{uncorrected_keys}, sh #{shifts}, off #{offsets}"
     return key
   end
 
@@ -97,10 +86,4 @@ class Enigma
     end
     return shifts
   end
-
-  # def find_shift_from_indicies(actual, cipher)
-  #     return cipher - actual if cipher > actual
-  #     return 27 - (actual - cipher)
-  # end
-
 end
