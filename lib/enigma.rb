@@ -56,15 +56,14 @@ class Enigma
     key_start = raw_keys[0].to_s.rjust(2, "0")
     key = key_start
     while key_start.length < 3
-      raw_keys[1..-1].each do |uk|
-        start = key[-1].to_i
-        x = ((start * 10 + 9)- uk)/27
-        k = 27 * x + uk
-        if ((k-27 != uk) && (k % 27 != uk)) || (k.to_s.rjust(2,"0")[0] != start.to_s)
-          break
-        end
+      raw_keys[1..-1].each do |raw_shift|
+         p raw_shift
+        multiplier = ((key[-1].to_i * 10 + 9) - raw_shift)/27
+        to_add = 27 * multiplier + raw_shift
+        break if invalid_sequence?(key, to_add, raw_shift)
 
-        key += k.to_s.rjust(2,"0")[1]
+        key += to_add.to_s[-1]
+
       end
       break if key.length == 5
       key_start = (key_start.to_i + 27).to_s
@@ -74,9 +73,9 @@ class Enigma
   end
 
   def invalid_sequence?(key, to_add, raw_shift)
-    return false if ((to_add - 27 != raw_shift) && (to_add % 27 != raw_shift))
-    return false if to_add.to_s.rjust(2, "0")[0] != key[-1]
-    return true
+    return true if ((to_add - 27 != raw_shift) && (to_add % 27 != raw_shift))
+    return true if to_add.to_s.rjust(2, "0")[0] != key[-1]
+    return false
   end
 
   def crack_cipher(message)
