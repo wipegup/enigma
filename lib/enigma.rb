@@ -68,7 +68,7 @@ class Enigma
 
     key_start = uncorrected_keys[0].to_s.rjust(2, "0")
     key = key_start
-    while key.length < 5
+    while key_start.length < 3
       p key_start
       p key
       uncorrected_keys[1..-1].each do |uk|
@@ -77,7 +77,7 @@ class Enigma
         x = ((start * 10 + 9)- uk)/27
         k = 27 * x + uk
         p "k #{k}, key: #{key},uk #{uk}"
-        if (k % 27 != uk) || (k.to_s.rjust(2,"0")[0] != start.to_s)
+        if ((k-27 != uk) && (k % 27 != uk)) || (k.to_s.rjust(2,"0")[0] != start.to_s)
           # p "k #{k}, key: #{key},uk #{uk}"
           break
         end
@@ -87,7 +87,6 @@ class Enigma
       break if key.length == 5
       key_start = (key_start.to_i + 27).to_s
       key = key_start
-      break if key_start.length >2
     end
 
     p "find_keys uk #{uncorrected_keys}, sh #{shifts}, off #{offset}"
