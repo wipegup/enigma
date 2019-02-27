@@ -101,4 +101,12 @@ class EnigmaTest < MiniTest::Test
     assert_equal expected_shift, @enigma.find_all_shifts(last_four_reversed)
   end
 
+  def test_rotate_shifts_to_correct_order
+    cipher_text = "gzennuypc"
+    shifts = [1,2,3,0]
+
+    expected = [0,1,2,3]
+    assert_equal expected, @enigma.rotate_shifts(cipher_text, shifts)
+  end
+
 end
