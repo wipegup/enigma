@@ -46,6 +46,7 @@ class Enigma
     shifts = find_all_shifts(cipher_text.reverse[0..3])
     rotate_amount = 4-((cipher_text.length) %4)
     shifts = shifts.reverse.rotate(rotate_amount)
+    p "fk #{shifts}"
     offsets = offset_from_date(date)
 
     uncorrected_keys = shifts.zip(offsets).map{ |shift, offset| shift - offset}
@@ -70,17 +71,21 @@ class Enigma
     return key
   end
 
+  def rotate_shifts(message, shifts)
+    rotate_amount = 4-((message.length) %4)
+    return shifts.rotate(rotate_amount)
+  end
+
   def crack_cipher(message)
-    reversed_cipher = message.reverse
-    shifts = find_all_shifts(reversed_cipher[0..3])
+    shifts = find_all_shifts(message[-4..-1])
     p "cracking #{shifts}"
     reversed_decoded = decrypt_ciphertext(reversed_cipher, shifts)
     return reversed_decoded.reverse
   end
 
-  def find_all_shifts(last_four_reversed)
+  def find_all_shifts(last_four)
     shifts = []
-    "dne ".chars.zip(last_four_reversed.chars).each do |actual, cipher|
+    " end".chars.zip(last_four_reversed.chars).each do |actual, cipher|
       shifts << find_shift(actual, cipher)
     end
     return shifts
