@@ -11,9 +11,9 @@ class EnigmaTest < MiniTest::Test
 
   def test_it_creates_ciphertext
     shifts = [3, 27, 73, 20]
-    message = "hello world"
+    message = "hello world!"
 
-    expected = 'keder ohulw'
+    expected = 'keder ohulw!'
     assert_equal expected, @enigma.create_ciphertext(message, shifts)
   end
 
