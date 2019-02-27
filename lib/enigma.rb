@@ -78,9 +78,9 @@ class Enigma
 
   def crack_cipher(message)
     shifts = find_all_shifts(message[-4..-1])
+    shifts = rotate_shifts(message, shifts)
     p "cracking #{shifts}"
-    reversed_decoded = decrypt_ciphertext(reversed_cipher, shifts)
-    return reversed_decoded.reverse
+    decrypt_ciphertext(message, shifts)
   end
 
   def find_all_shifts(last_four)
