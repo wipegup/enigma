@@ -49,7 +49,7 @@ class Enigma
     offsets = offset_from_date(date)
 
     raw_keys = shifts.zip(offsets).map{ |shift, offset| shift - offset}
-
+    p raw_keys
     key_start = raw_keys[0].to_s.rjust(2, "0")
     key = key_start
     while key_start.length < 3
@@ -70,11 +70,6 @@ class Enigma
     return key
   end
 
-  def rotate_shifts(message, shifts)
-    rotate_amount = 4-((message.length) %4)
-    return shifts.rotate(rotate_amount)
-  end
-
   def crack_cipher(message)
     shifts = find_all_shifts(message)
     decrypt_ciphertext(message, shifts)
@@ -86,5 +81,10 @@ class Enigma
       shifts << find_shift(actual, cipher)
     end
     return rotate_shifts(message, shifts)
+  end
+
+  def rotate_shifts(message, shifts)
+    rotate_amount = 4-((message.length) %4)
+    return shifts.rotate(rotate_amount)
   end
 end
